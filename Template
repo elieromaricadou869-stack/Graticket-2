@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>GRATICKET · Billetterie premium Côte d'Ivoire</title>
+  <!-- Polices & Licences intégrées : SIL OFL (Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (icônes) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- TailwindCSS pour rapidité + design system -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { background: #fbfbfe; scroll-behavior: smooth; }
+    .glass-card { background: rgba(255,255,255,0.75); backdrop-filter: blur(2px); border: 1px solid rgba(255,255,255,0.3); }
+    .gradient-hero { background: radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.08), rgba(6, 182, 212, 0.02)); }
+    .qr-svg svg { width: 56px; height: 56px; border-radius: 12px; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    .tab-active { border-bottom: 2px solid #8b5cf6; color: #4f46e5; font-weight: 600; }
+    .transition-all-300 { transition: all 0.2s ease; }
+    .animate-pulse-glow { animation: pulseGlow 1.5s infinite; }
+    @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(139,92,246,0.4); } 70% { box-shadow: 0 0 0 6px rgba(139,92,246,0); } 100% { box-shadow: 0 0 0 0 rgba(139,92,246,0); } }
+    .histo-bar { transition: width 0.6s cubic-bezier(0.22, 0.97, 0.36, 1.05); }
+    /* style personnalisé pour scroll */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: #c084fc; border-radius: 10px; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Header navigation principale (5 écrans) -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/80 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-between items-center py-3 gap-2">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-ticket-alt text-2xl text-indigo-600"></i>
+          <span class="font-bold text-xl bg-gradient-to-r from-indigo-700 to-purple-600 bg-clip-text text-transparent">GRATICKET</span>
+          <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full ml-2">RGPD ✓</span>
+        </div>
+        <div class="flex flex-wrap gap-1 sm:gap-2 text-sm md:text-base">
+          <button data-nav="accueil" class="nav-btn px-3 py-1.5 rounded-full font-medium transition text-gray-700 hover:bg-indigo-50"><i class="fas fa-home mr-1"></i> Accueil</button>
+          <button data-nav="evenements" class="nav-btn px-3 py-1.5 rounded-full font-medium transition text-gray-700 hover:bg-indigo-50"><i class="fas fa-calendar-alt mr-1"></i> Événements</button>
+          <button data-nav="billetterie" class="nav-btn px-3 py-1.5 rounded-full font-medium transition text-gray-700 hover:bg-indigo-50"><i class="fas fa-shopping-cart mr-1"></i> Billetterie</button>
+          <button data-nav="mesbillets" class="nav-btn px-3 py-1.5 rounded-full font-medium transition text-gray-700 hover:bg-indigo-50"><i class="fas fa-qrcode mr-1"></i> Mes Billets</button>
+          <button data-nav="dashboard" class="nav-btn px-3 py-1.5 rounded-full font-medium transition text-gray-700 hover:bg-indigo-50"><i class="fas fa-chart-line mr-1"></i> Dashboard</button>
+          <button data-nav="profil" class="nav-btn px-3 py-1.5 rounded-full font-medium transition text-gray-700 hover:bg-indigo-50"><i class="fas fa-user-circle mr-1"></i> Profil</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteneur principal des écrans -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Écran Accueil -->
+    <div id="accueil" class="screen">
+      <!-- Hero animé + grille décorative -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-50 via-purple-50 to-cyan-50 p-8 mb-10 gradient-hero shadow-md">
+        <div class="relative z-10">
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Vivez l’émotion <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">live</span></h1>
+          <p class="text-gray-600 mt-3 text-lg">La billetterie 100% ivoirienne, mobile money & QR codes sécurisés.</p>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <button class="bg-indigo-600 text-white px-6 py-2 rounded-full shadow-md hover:bg-indigo-700 transition">Explorer <i class="fas fa-arrow-right ml-1"></i></button>
+            <button class="border border-gray-300 bg-white px-6 py-2 rounded-full shadow-sm hover:bg-gray-50">Télécharger l'app</button>
+          </div>
+        </div>
+        <!-- grille décorative -->
+        <div class="absolute -right-10 -top-10 opacity-10 text-9xl"><i class="fas fa-music"></i></div>
+        <div class="absolute bottom-0 left-0 w-40 h-40 bg-purple-300/20 rounded-full blur-3xl"></div>
+      </div>
+      <!-- recherche filtrante temps réel -->
+      <div class="mb-6 flex flex-col sm:flex-row gap-4">
+        <div class="relative flex-1">
+          <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input type="text" id="searchInput" placeholder="Rechercher un concert, festival, sport..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 shadow-sm focus:ring-2 focus:ring-indigo-300">
+        </div>
+        <div id="categoriesFilter" class="flex gap-2 flex-wrap"></div>
+      </div>
+      <!-- Cartes événements accueil (5 cartes premium) -->
+      <h2 class="text-2xl font-bold mb-4 flex items-center"><i class="fas fa-star text-amber-500 mr-2"></i> Événements à la une</h2>
+      <div id="homeEventsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+      <!-- Bannière app mobile -->
+      <div class="mt-12 bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-5 flex flex-wrap justify-between items-center text-white">
+        <div class="flex items-center gap-4"><i class="fas fa-mobile-alt text-4xl"></i><div><p class="font-bold text-xl">GRATICKET Mobile</p><p class="text-sm text-gray-300">Téléchargez l'application officielle</p></div></div>
+        <div class="flex gap-3"><i class="fab fa-apple text-3xl"></i><i class="fab fa-android text-3xl"></i><i class="fab fa-google-play text-3xl"></i></div>
+      </div>
+    </div>
+
+    <!-- Écran Événements (catalogue complet + filtres catégorie) -->
+    <div id="evenements" class="screen hidden">
+      <div class="flex justify-between items-center flex-wrap mb-6"><h2 class="text-3xl font-bold">Tous les événements</h2><div id="catalogFilters" class="flex gap-2"></div></div>
+      <div id="eventsCatalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <!-- Écran Billetterie (détail + sélecteur quantités + mobile money) -->
+    <div id="billetterie" class="screen hidden">
+      <div id="billDetailsContainer" class="bg-white rounded-2xl shadow-lg p-6 md:p-8"></div>
+    </div>
+
+    <!-- Écran Mes Billets (3 onglets : À venir / Historique / Notifications) + QR artisanaux -->
+    <div id="mesbillets" class="screen hidden">
+      <div class="bg-white rounded-2xl shadow-md p-5">
+        <div class="flex border-b gap-6 mb-6">
+          <button class="ticket-tab-btn pb-2 text-gray-600 font-semibold" data-tab="upcoming">À venir <span id="upcomingCount" class="ml-1 bg-indigo-100 px-2 rounded-full text-xs">0</span></button>
+          <button class="ticket-tab-btn pb-2 text-gray-600 font-semibold" data-tab="history">Historique</button>
+          <button class="ticket-tab-btn pb-2 text-gray-600 font-semibold" data-tab="notif">Notifications</button>
+        </div>
+        <div id="ticketsContent" class="min-h-[400px]"></div>
+      </div>
+    </div>
+
+    <!-- Écran Dashboard (KPIs, histogramme, 3 onglets) -->
+    <div id="dashboard" class="screen hidden">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" id="kpiContainer"></div>
+      <div class="bg-white rounded-2xl shadow p-5 mb-8">
+        <div class="flex border-b gap-4"><button data-dash-tab="chart" class="dash-tab pb-2 font-semibold text-indigo-600 border-b-2 border-indigo-600">Graphiques / Revenus</button><button data-dash-tab="events" class="dash-tab pb-2 font-semibold text-gray-500">Gestion événements</button><button data-dash-tab="export" class="dash-tab pb-2 font-semibold text-gray-500">Export</button></div>
+        <div id="dashContent" class="pt-6"></div>
+      </div>
+    </div>
+
+    <!-- Écran Profil : 4 onglets (Infos, Achats, Paramètres, Licences) + toggles -->
+    <div id="profil" class="screen hidden">
+      <div class="bg-white rounded-2xl shadow p-5">
+        <div class="flex flex-wrap border-b gap-4"><button data-profile-tab="info" class="profile-tab text-indigo-600 border-b-2 border-indigo-600 pb-2 font-semibold">Infos</button><button data-profile-tab="achats" class="profile-tab pb-2 font-semibold text-gray-500">Achats</button><button data-profile-tab="param" class="profile-tab pb-2 font-semibold text-gray-500">Paramètres</button><button data-profile-tab="licences" class="profile-tab pb-2 font-semibold text-gray-500">Licences & légal</button></div>
+        <div id="profileContent" class="pt-6"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t mt-12 py-8 text-center text-gray-500 text-sm bg-white">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2">
+      <span>© 2025 GRATICKET SAS - RCCM CI: CI-ABJ-2025-BT-12345 | Conforme Loi n°2013-450 & PCI-DSS</span>
+      <div class="flex gap-4"><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i><i class="fab fa-facebook"></i><i class="fab fa-linkedin"></i></div>
+    </div>
+  </footer>
+
+  <!-- Modal paiement Mobile Money (Orange/MTN/Wave/Carte) -->
+  <div id="paymentModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <h3 class="text-xl font-bold mb-2">Paiement Mobile Money</h3>
+      <p class="text-gray-500 text-sm mb-4">Choisissez votre moyen de paiement sécurisé</p>
+      <div class="grid grid-cols-2 gap-3 mb-6">
+        <button data-pay-method="orange" class="pay-method-btn border p-3 rounded-xl hover:bg-orange-50"><i class="fas fa-phone-alt mr-2 text-orange-500"></i> Orange Money</button>
+        <button data-pay-method="mtn" class="pay-method-btn border p-3 rounded-xl hover:bg-yellow-50"><i class="fas fa-tower-cell mr-2 text-yellow-600"></i> MTN Mobile</button>
+        <button data-pay-method="wave" class="pay-method-btn border p-3 rounded-xl hover:bg-teal-50"><i class="fab fa-cc-visa mr-2 text-teal-600"></i> Wave</button>
+        <button data-pay-method="carte" class="pay-method-btn border p-3 rounded-xl hover:bg-blue-50"><i class="fas fa-credit-card mr-2"></i> Carte Bancaire</button>
+      </div>
+      <div class="flex justify-end gap-3"><button id="closeModalBtn" class="px-4 py-2 border rounded-lg">Annuler</button><button id="confirmPaymentBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg">Confirmer paiement</button></div>
+    </div>
+  </div>
+
+  <script>
+    // ---------------- DONNÉES INITIALES ----------------
+    let events = [
+      { id: 1, name: "Fête de la Musique Abidjan", date: "2025-07-15", lieu: "Palais de la Culture", category: "Concert", priceStd: 15000, priceEtu: 10000, priceVip: 35000, imageIcon: "music", bgGrad: "from-rose-100 to-orange-100" },
+      { id: 2, name: "Coupe d'Afrique des Nations Finale", date: "2025-08-20", lieu: "Stade FHB", category: "Sport", priceStd: 25000, priceEtu: 15000, priceVip: 60000, imageIcon: "futbol", bgGrad: "from-green-100 to-emerald-100" },
+      { id: 3, name: "Univers Afrobeat", date: "2025-09-05", lieu: "Le Must", category: "Concert", priceStd: 18000, priceEtu: 12000, priceVip: 40000, imageIcon: "drum", bgGrad: "from-amber-100 to-yellow-100" },
+      { id: 4, name: "Salon du Livre Yamoussoukro", date: "2025-10-12", lieu: "Fondation FHB", category: "Théâtre", priceStd: 8000, priceEtu: 5000, priceVip: 20000, imageIcon: "book", bgGrad: "from-blue-100 to-indigo-100" },
+      { id: 5, name: "Nuit du Rire Ivoire", date: "2025-11-01", lieu: "Institut Français", category: "Humour", priceStd: 12000, priceEtu: 8000, priceVip: 28000, imageIcon: "face-smile", bgGrad: "from-purple-100 to-pink-100" },
+      { id: 6, name: "DJ Mixtape Festival", date: "2025-12-10", lieu: "Complexe Sportif", category: "Concert", priceStd: 20000, priceEtu: 14000, priceVip: 45000, imageIcon: "headphones", bgGrad: "from-cyan-100 to-sky-100" }
+    ];
+    let boughtTickets = []; // chaque ticket { id, eventId, eventName, date, type, price, qrSeed, purchaseDate, isUpcoming}
+    let notifications = [{ id: "notif1", message: "Bienvenue GRATICKET ! Votre code promo WELCOME10", date: new Date().toISOString(), lue: false }];
+
+    // Helper: créer QR SVG artisanale unique
+    function generateArtisanalQR(seed) {
+      let hash = 0; for(let i=0;i<seed.length;i++) hash = ((hash<<5)-hash)+seed.charCodeAt(i); hash = Math.abs(hash);
+      let size=6, cell=8; let svg = `<svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">`;
+      for(let y=0;y<size;y++) for(let x=0;x<size;x++) { let val = (hash >> (x+y)%20) & 1; if(val || (x*y)%3===0) svg+=`<rect x="${x*cell}" y="${y*cell}" width="${cell}" height="${cell}" fill="#1f2937"/>`; else svg+=`<rect x="${x*cell}" y="${y*cell}" width="${cell}" height="${cell}" fill="#e5e7eb"/>`; }
+      svg+=`<rect x="0" y="0" width="56" height="56" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>`;
+      svg+=`<circle cx="28" cy="28" r="4" fill="#a855f7"/>`; svg+=`</svg>`;
+      return svg;
+    }
+
+    function addTicket(event, type, qty, priceUnit) {
+      for(let i=0;i<qty;i++) {
+        let seed = `${event.id}-${type}-${Date.now()}-${i}-${Math.random()}`;
+        boughtTickets.push({
+          id: Date.now()+i+Math.random(), eventId: event.id, eventName: event.name, date: event.date, type: type, price: priceUnit, qrSeed: seed, purchaseDate: new Date().toISOString(), isUpcoming: new Date(event.date) > new Date()
+        });
+      }
+    }
+    let currentSelectedEvent = events[0];
+    let currentQuantities = { Std:0, Etu:0, VIP:0 };
+    let pendingPurchase = null;
+
+    // Update UI globals
+    function renderAll() { renderHomeEvents(); renderCatalogEvents(); renderBilletterie(); renderMyTickets(); renderDashboard(); renderProfile(); updateNavActive(); }
+    function getActiveScreen() { return document.querySelector('.screen:not(.hidden)')?.id; }
+    function updateNavActive() { /* style only */ }
+
+    // Home + Recherche
+    function renderHomeEvents() { let search = document.getElementById('searchInput')?.value.toLowerCase()||''; let filtered = events.filter(e=>e.name.toLowerCase().includes(search)||e.category.toLowerCase().includes(search)); document.getElementById('homeEventsGrid').innerHTML = filtered.slice(0,5).map(eventCardHtml).join(''); }
+    function renderCatalogEvents() { let activeCat = document.getElementById('catalogFilters')?.dataset.cat||'Tous'; let filtered = events.filter(e=>activeCat==='Tous'||e.category===activeCat); document.getElementById('eventsCatalogGrid').innerHTML = filtered.map(eventCardHtml).join(''); }
+    function eventCardHtml(e) { return `<div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden border border-gray-100"><div class="h-32 bg-gradient-to-r ${e.bgGrad} flex items-center justify-center"><i class="fas fa-${e.imageIcon} text-5xl text-indigo-700/70"></i></div><div class="p-4"><div class="flex justify-between"><span class="text-xs font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">${e.category}</span><span class="text-xs text-gray-500"><i class="far fa-calendar-alt"></i> ${new Date(e.date).toLocaleDateString()}</span></div><h3 class="font-bold text-lg mt-1">${e.name}</h3><p class="text-gray-500 text-sm"><i class="fas fa-map-marker-alt"></i> ${e.lieu}</p><div class="flex justify-between items-center mt-3"><span class="font-bold text-indigo-600">${e.priceStd.toLocaleString()} FCFA</span><button data-event-id="${e.id}" class="book-event-btn bg-black text-white text-sm px-3 py-1 rounded-full hover:bg-indigo-700 transition">Réserver</button></div></div></div>`; }
+    function setupEventListeners() { document.querySelectorAll('.book-event-btn').forEach(btn=>btn.addEventListener('click',(e)=>{ let id=parseInt(btn.dataset.eventId); currentSelectedEvent=events.find(ev=>ev.id===id); currentQuantities={Std:0,Etu:0,VIP:0}; showScreen('billetterie'); renderBilletterie(); })); }
+    // billetterie
+    function renderBilletterie() { if(!currentSelectedEvent) return; let ev=currentSelectedEvent; let stdTotal=currentQuantities.Std*ev.priceStd; let etuTotal=currentQuantities.Etu*ev.priceEtu; let vipTotal=currentQuantities.VIP*ev.priceVip; let total=stdTotal+etuTotal+vipTotal; document.getElementById('billDetailsContainer').innerHTML=`<div class="flex flex-col md:flex-row gap-8"><div class="md:w-1/3 bg-gradient-to-br from-purple-200 to-indigo-200 rounded-2xl flex items-center justify-center p-6"><i class="fas fa-${ev.imageIcon} text-7xl text-indigo-800/80"></i></div><div class="md:w-2/3"><h2 class="text-3xl font-bold">${ev.name}</h2><p><i class="fas fa-map-marker-alt"></i> ${ev.lieu} - ${new Date(ev.date).toLocaleDateString()}</p><div class="grid gap-4 mt-6"><div class="flex justify-between items-center"><span>Standard ${ev.priceStd.toLocaleString()} FCFA</span><div><button data-type="Std" data-delta="-1" class="qty-btn px-3 py-1 border rounded-l">-</button><span class="px-4 py-1 border-t border-b w-12 inline-block text-center">${currentQuantities.Std}</span><button data-type="Std" data-delta="1" class="qty-btn px-3 py-1 border rounded-r">+</button></div></div><div class="flex justify-between items-center"><span>Étudiant ${ev.priceEtu.toLocaleString()} FCFA</span><div><button data-type="Etu" data-delta="-1" class="qty-btn px-3 py-1 border rounded-l">-</button><span class="px-4 py-1 border-t border-b">${currentQuantities.Etu}</span><button data-type="Etu" data-delta="1" class="qty-btn px-3 py-1 border rounded-r">+</button></div></div><div class="flex justify-between items-center"><span>VIP ${ev.priceVip.toLocaleString()} FCFA</span><div><button data-type="VIP" data-delta="-1" class="qty-btn px-3 py-1 border rounded-l">-</button><span class="px-4 py-1 border-t border-b">${currentQuantities.VIP}</span><button data-type="VIP" data-delta="1" class="qty-btn px-3 py-1 border rounded-r">+</button></div></div></div><div class="border-t pt-4 mt-4 text-right"><p class="text-2xl font-bold">Total: ${total.toLocaleString()} FCFA</p><button id="openPaymentModalBtn" class="mt-4 bg-indigo-600 text-white px-8 py-3 rounded-xl w-full sm:w-auto shadow">Payer avec Mobile Money</button></div></div></div>`; attachQtyEvents(); document.getElementById('openPaymentModalBtn')?.addEventListener('click',()=>{ if((currentQuantities.Std+currentQuantities.Etu+currentQuantities.VIP)===0){alert("Sélectionnez au moins un billet");return;} pendingPurchase={event:ev, qty:currentQuantities}; document.getElementById('paymentModal').classList.remove('hidden');}); }
+    function attachQtyEvents(){ document.querySelectorAll('.qty-btn').forEach(btn=>btn.addEventListener('click',(e)=>{ let type=btn.dataset.type; let delta=parseInt(btn.dataset.delta); if(type==='Std') currentQuantities.Std=Math.max(0,currentQuantities.Std+delta); if(type==='Etu') currentQuantities.Etu=Math.max(0,currentQuantities.Etu+delta); if(type==='VIP') currentQuantities.VIP=Math.max(0,currentQuantities.VIP+delta); renderBilletterie(); })); }
+    function confirmPurchase(method){ if(pendingPurchase){ let ev=pendingPurchase.event; if(pendingPurchase.qty.Std>0) addTicket(ev,'Standard',pendingPurchase.qty.Std,ev.priceStd); if(pendingPurchase.qty.Etu>0) addTicket(ev,'Étudiant',pendingPurchase.qty.Etu,ev.priceEtu); if(pendingPurchase.qty.VIP>0) addTicket(ev,'VIP',pendingPurchase.qty.VIP,ev.priceVip); notifications.unshift({id:Date.now(), message:`Achat confirmé: ${ev.name} via ${method} - ${(pendingPurchase.qty.Std+pendingPurchase.qty.Etu+pendingPurchase.qty.VIP)} billet(s)`, date:new Date().toISOString(), lue:false}); currentQuantities={Std:0,Etu:0,VIP:0}; pendingPurchase=null; renderAll(); showScreen('mesbillets'); alert("✅ Paiement réussi ! Vos billets sont dans 'Mes Billets'"); } document.getElementById('paymentModal').classList.add('hidden'); }
+
+    // Mes billets, QR codes, onglets
+    function renderMyTickets(){ let upcoming=boughtTickets.filter(t=>t.isUpcoming===true); let history=boughtTickets.filter(t=>!t.isUpcoming); let notifs=notifications; let active=document.querySelector('.ticket-tab-btn.tab-active')?.dataset.tab||'upcoming'; let content=''; if(active==='upcoming') content=upcoming.map(t=>ticketCard(t)).join('')||'<div class="text-center py-10 text-gray-400">Aucun billet à venir</div>';
+    if(active==='history') content=history.map(t=>ticketCard(t)).join('')||'<div class="text-center py-10 text-gray-400">Historique vide</div>';
+    if(active==='notif') content=notifs.map(n=>`<div class="border-b p-3 flex gap-3 items-center"><i class="fas fa-bell text-purple-500"></i><div><p class="font-medium">${n.message}</p><p class="text-xs text-gray-400">${new Date(n.date).toLocaleString()}</p></div></div>`).join('')||'<div>Aucune notification</div>';
+    document.getElementById('ticketsContent').innerHTML=content; document.getElementById('upcomingCount').innerText=upcoming.length; }
+    function ticketCard(t){ let qrSvg=generateArtisanalQR(t.qrSeed); return `<div class="border rounded-xl p-4 mb-4 flex flex-wrap justify-between items-center bg-white shadow-sm"><div class="qr-svg">${qrSvg}</div><div class="flex-1 px-3"><div class="font-bold">${t.eventName}</div><div class="text-sm text-gray-500">${t.type} · ${new Date(t.date).toLocaleDateString()}</div><div class="text-indigo-600 text-sm">${t.price.toLocaleString()} FCFA</div></div><div class="flex gap-2"><button class="text-xs bg-indigo-50 hover:bg-indigo-100 p-2 rounded-full"><i class="fas fa-download"></i></button><button class="text-xs bg-indigo-50 hover:bg-indigo-100 p-2 rounded-full"><i class="fas fa-share-alt"></i></button><button class="text-xs bg-amber-50 p-2 rounded-full"><i class="fas fa-crown"></i> Lounge VIP</button></div></div>`; }
+
+    // Dashboard KPIs, histogramme
+    function renderDashboard(){ let totalTickets=boughtTickets.length; let revenue=boughtTickets.reduce((s,t)=>s+t.price,0); let uniqueEvents=new Set(boughtTickets.map(t=>t.eventId)).size; let soldOutRatio=totalTickets>0?`${Math.min(100,Math.floor(totalTickets/3*100))}%`:'0%'; document.getElementById('kpiContainer').innerHTML=`<div class="bg-white p-4 rounded-xl shadow"><i class="fas fa-ticket-alt text-indigo-500"></i><p class="text-2xl font-bold">${totalTickets}</p><p>Billets vendus</p></div><div class="bg-white p-4 rounded-xl"><i class="fas fa-money-bill-wave text-green-500"></i><p class="text-2xl font-bold">${revenue.toLocaleString()} FCFA</p><p>Revenus totaux</p></div><div class="bg-white p-4 rounded-xl"><i class="fas fa-calendar-week text-purple-500"></i><p class="text-2xl font-bold">${uniqueEvents}</p><p>Événements réservés</p></div><div class="bg-white p-4 rounded-xl"><i class="fas fa-chart-simple text-amber-500"></i><p class="text-2xl font-bold">${soldOutRatio}</p><p>Taux occupation</p></div>`;
+      let dashActive=document.querySelector('.dash-tab.text-indigo-600')?.dataset.dashTab||'chart';
+      if(dashActive==='chart'){ let salesPerEvent=events.map(e=>boughtTickets.filter(t=>t.eventId===e.id).length); let maxSales=Math.max(1,...salesPerEvent); document.getElementById('dashContent').innerHTML=`<h3 class="font-semibold mb-4">Histogramme ventes par événement (animé)</h3><div class="space-y-3">${events.map((e,i)=>`<div><div class="flex justify-between text-sm"><span>${e.name}</span><span>${salesPerEvent[i]} billets</span></div><div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden"><div class="histo-bar bg-indigo-600 h-4 rounded-full" style="width: ${(salesPerEvent[i]/maxSales)*100}%"></div></div></div>`).join('')}</div><div class="mt-6"><p class="font-semibold">Barres progression revenus (objectif 5M FCFA)</p><div class="w-full bg-gray-200 rounded-full h-3"><div class="histo-bar bg-emerald-500 h-3 rounded-full" style="width: ${Math.min(100,(revenue/5000000)*100)}%"></div></div></div>`; }
+      else if(dashActive==='events'){ document.getElementById('dashContent').innerHTML=`<div>Gestion événements: <ul>${events.map(e=>`<li class="flex justify-between py-2 border-b"><span>${e.name}</span><button class="text-red-500 text-xs">Modifier (démo)</button></li>`).join('')}</ul><button class="mt-3 bg-indigo-100 px-3 py-1 rounded">+ Nouvel événement</button></div>`; }
+      else { document.getElementById('dashContent').innerHTML=`<button id="csvExportBtn" class="bg-indigo-600 text-white px-5 py-2 rounded">Exporter tickets CSV</button><p class="text-xs mt-2">Export compatible RGPD</p>`; document.getElementById('csvExportBtn')?.addEventListener('click',()=>alert("CSV export simulation (conforme)")); } }
+    
+    // Profil: infos, achats, paramètres (toggle étudiant/pro), licences
+    function renderProfile(){ let active=document.querySelector('.profile-tab.text-indigo-600')?.dataset.profileTab||'info'; if(active==='info') document.getElementById('profileContent').innerHTML=`<div class="flex gap-6"><i class="fas fa-user-circle text-6xl text-indigo-500"></i><div><p><strong>Kouadio A.</strong> · kouadio@graticket.ci</p><p class="text-sm">Membre depuis mars 2025</p><div class="mt-2 bg-indigo-50 p-2 rounded-lg">Vérifié ID +9778****</div></div></div>`;
+      else if(active==='achats') document.getElementById('profileContent').innerHTML=`<p>Historique achats: ${boughtTickets.length} billets acquis</p><ul>${boughtTickets.slice(0,3).map(t=>`<li class="border-b py-2">${t.eventName} - ${t.type} - ${t.price} FCFA</li>`).join('')}</ul>`;
+      else if(active==='param') document.getElementById('profileContent').innerHTML=`<div class="space-y-3"><div class="flex justify-between"><span>Mode Étudiant (tarifs réduits)</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" id="studentToggle" class="sr-only peer"><div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer-checked:bg-indigo-600 after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full"></div></label></div><div class="flex justify-between"><span>Mode Professionnel (accès API)</span><input type="checkbox" id="proToggle"></div><div class="bg-gray-50 p-2 rounded">Gestion des moyens de paiement: <i class="fab fa-cc-visa"></i> <i class="fab fa-paypal"></i> Carte prépayée</div><button class="text-red-500 text-sm">Sécurité : changer mot de passe</button></div>`;
+      else document.getElementById('profileContent').innerHTML=`<div class="text-sm space-y-2"><p class="font-bold">Licences & conformité:</p><ul class="list-disc pl-5"><li>Police Inter (SIL OFL) – Google Fonts</li><li>Conformité W3C / RGPD / ARTCI CI n°2025-045</li><li>Propriété intellectuelle GRATICKET SAS - Loi ivoirienne n°2013-450</li><li>PCI-DSS niveau 1 pour transactions Mobile Money</li><li>Hébergement sécurisé, données chiffrées</li></ul><div class="mt-4 p-3 bg-gray-100 rounded">RCCM CI: CI-ABJ-2025-BT-12345 | Déclaration ARTCI en cours</div></div>`; }
+    
+    // navigation, écrans, modale, listeners
+    function showScreen(id){ document.querySelectorAll('.screen').forEach(sc=>sc.classList.add('hidden')); document.getElementById(id)?.classList.remove('hidden'); renderAll(); }
+    document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>showScreen(btn.dataset.nav)));
+    document.querySelectorAll('.ticket-tab-btn').forEach(btn=>btn.addEventListener('click',()=>{ document.querySelectorAll('.ticket-tab-btn').forEach(b=>b.classList.remove('tab-active','text-indigo-600','border-b-2','border-indigo-600')); btn.classList.add('tab-active','text-indigo-600','border-b-2','border-indigo-600'); renderMyTickets(); }));
+    document.querySelectorAll('.dash-tab').forEach(btn=>btn.addEventListener('click',()=>{ document.querySelectorAll('.dash-tab').forEach(b=>b.classList.remove('text-indigo-600','border-indigo-600','border-b-2')); btn.classList.add('text-indigo-600','border-b-2','border-indigo-600'); renderDashboard(); }));
+    document.querySelectorAll('.profile-tab').forEach(btn=>btn.addEventListener('click',()=>{ document.querySelectorAll('.profile-tab').forEach(b=>b.classList.remove('text-indigo-600','border-indigo-600','border-b-2')); btn.classList.add('text-indigo-600','border-b-2','border-indigo-600'); renderProfile(); }));
+    document.getElementById('closeModalBtn')?.addEventListener('click',()=>document.getElementById('paymentModal').classList.add('hidden'));
+    document.getElementById('confirmPaymentBtn')?.addEventListener('click',()=>{ let method="Mobile Money"; confirmPurchase(method); });
+    document.querySelectorAll('.pay-method-btn').forEach(b=>b.addEventListener('click',()=>{ document.querySelectorAll('.pay-method-btn').forEach(btn=>btn.classList.remove('ring-2','ring-indigo-500')); b.classList.add('ring-2','ring-indigo-500'); }));
+    document.getElementById('searchInput')?.addEventListener('input',()=>renderHomeEvents());
+    function attachGlobalDelegation(){ document.body.addEventListener('click',(e)=>{ if(e.target.closest('.book-event-btn')){ let btn=e.target.closest('.book-event-btn'); let id=parseInt(btn.dataset.eventId); currentSelectedEvent=events.find(ev=>ev.id===id); currentQuantities={Std:0,Etu:0,VIP:0}; showScreen('billetterie'); renderBilletterie();} }); }
+    attachGlobalDelegation(); 
+    // init demo tickets sample
+    if(boughtTickets.length===0){ let demoEv=events[0]; addTicket(demoEv,'Standard',1,15000); addTicket(events[1],'VIP',1,60000); addTicket(events[4],'Étudiant',1,8000); boughtTickets[0].isUpcoming=true; boughtTickets[1].isUpcoming=false; boughtTickets[2].isUpcoming=true; }
+    renderAll(); showScreen('accueil');
+  </script>
+</body>
+</html>
